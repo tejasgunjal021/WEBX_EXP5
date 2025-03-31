@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome {{ username }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, {{ username }}!</h1>
+
+        {% if username == "Guest" %}
+            <p>Welcome to our platform! Consider signing up for a personalized experience.</p>
+        {% else %}
+            <p>Welcome back, {{ username }}! Here’s your profile page where you can manage your settings.</p>
+        {% endif %}
+
+        <h2>Your Interests</h2>
+        <ul>
+            {% for interest in interests %}
+                <li>{{ interest }}</li>
+            {% else %}
+                <li>No interests found. Update your profile to add some!</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('home') }}" class="button">Back to Home</a>
+    </div>
+</body>
+</html>
